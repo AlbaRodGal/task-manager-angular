@@ -11,52 +11,50 @@
     <div class="board-bar">
       <p class="board-name">Board Name</p>
     </div>
-
     <div class="board-wrapper">
       <div class="board-columns" cdkDropListGroup>
-        <div class="board-column">
-          <div class="column-title">Todo</div>
-          <div
-            class="task-container"
-            cdkDropList
-            [cdkDropListData]="todo"
-            (cdkDropListDropped)="drop($event)"
-          >
-            <div class="task" *ngFor="let item of todo" cdkDrag>{{ item }}</div>
-          </div>
-        </div>
-        <div class="board-column">
-          <div class="column-title">Doing</div>
-          <div
-            class="task-container"
-            cdkDropList
-            [cdkDropListData]="doing"
-            (cdkDropListDropped)="drop($event)"
-          >
-            <div class="task" *ngFor="let item of doing" cdkDrag>{{ item }}</div>
-          </div>
-        </div>
-        <div class="board-column">
-          <div class="column-title">Done</div>
-          <div
-            class="task-container"
-            cdkDropList
-            [cdkDropListData]="done"
-            (cdkDropListDropped)="drop($event)"
-          >
-            <div class="task" *ngFor="let item of done" cdkDrag>{{ item }}</div>
-          </div>
-        </div>
-        <div class="board-column">
-          <div class="column-title">Ideas</div>
-          <div
-            class="task-container"
-            cdkDropList
-            [cdkDropListData]="ideas"
-            (cdkDropListDropped)="drop($event)"
-          >
-            <div class="task" *ngFor="let item of ideas" cdkDrag>{{ item }}</div>
-          </div>
+        <div
+        class="board-column"
+        cdkDropList
+        [cdkDropListData]="tasks"
+        (cdkDropListDropped)="drop($event)"
+        >
+        <div class="column-title">Backlog</div>
+        <app-task
+        cdkDrag
+        *ngFor="let task of tasks"
+        [task]="task"
+        (edit)="edit('tasks', $event)"
+        ></app-task>
+        <button mat-raised-button color='primary' (click)="addTask(task)">Add task</button>
+      </div>
+      <div
+      class="board-column"
+      cdkDropList
+      [cdkDropListData]="inProgress"
+      (cdkDropListDropped)="drop($event)"
+      >
+      <div class="column-title">In progress</div>
+      <app-task
+      cdkDrag
+      *ngFor="let task of inProgress"
+      [task]="task"
+      (edit)="edit('inProgress', $event)"
+      ></app-task>
+    </div>
+    <div
+    class="board-column"
+    cdkDropList
+    [cdkDropListData]="done"
+    (cdkDropListDropped)="drop($event)"
+    >
+    <div class="column-title">Done</div>
+    <app-task
+    cdkDrag
+    *ngFor="let task of done"
+            [task]="task"
+            (edit)="edit('tasks', $event)"
+          ></app-task>
         </div>
       </div>
     </div>

@@ -1,0 +1,25 @@
+<div class="add-task-dialog__container">
+  <h2 class="add-task-dialog__title">New Task</h2>
+  <div class="add-task-dialog__input-container">
+    <i class="material-icons">drive_file_rename_outline</i
+    ><label class="add-task-dialog__label"> Task</label>
+    <input class="add-task-dialog__input" matInput placeholder="Task" />
+  </div>
+  <div class="add-task-dialog__input-container">
+    <i class="material-icons">article</i
+    ><label class="add-task-dialog__label">Description</label>
+    <textarea
+      class="add-task-dialog__input"
+      matTextarea
+      placeholder="Add a more detailed description..."
+    ></textarea>
+  </div>
+  <div mat-dialog-actions class="add-task-dialog__button">
+    <button class="add-task-dialog__button__close" mat-button mat-dialog-close>
+      Close
+    </button>
+    <button class="add-task-dialog__button__save" mat-button mat-dialog-save>
+      Save
+    </button>
+  </div>
+</div>
