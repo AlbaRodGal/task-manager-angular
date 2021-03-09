@@ -1,4 +1,7 @@
-import { TaskDialogComponent } from './../../components/task-dialog/task-dialog.component';
+import {
+  TaskDialogComponent,
+  TaskDialogResult,
+} from './../../components/task-dialog/task-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { Task } from 'src/app/components/task/task.model';
 import {
@@ -78,10 +81,28 @@ export class MainViewComponent implements OnInit {
     }
   }
   edit(list: string, task: Task): void {
-
+    const dialogRef = this.dialog.open(TaskDialogComponent, {
+      data: {
+        task: {
+          name: this.task.name,
+          description: this.task.description
+        }
+      },
+    });
+    dialogRef
+      .afterClosed()
+      // tslint:disable-next-line: deprecation
+      .subscribe((result: TaskDialogResult) => this.tasks.push(result.task));
   }
-  addTask(task: Task): void {
-    const dialogRef = this.dialog.open(TaskDialogComponent);
-    console.log('newTask');
+  addTask(): void {
+    const dialogRef = this.dialog.open(TaskDialogComponent, {
+      data: {
+        task: {},
+      },
+    });
+    dialogRef
+      .afterClosed()
+      // tslint:disable-next-line: deprecation
+      .subscribe((result: TaskDialogResult) => this.tasks.push(result.task));
   }
 }
